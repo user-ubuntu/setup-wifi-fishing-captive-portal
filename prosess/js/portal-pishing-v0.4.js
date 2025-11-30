@@ -1,5 +1,5 @@
 // <script type="text/javascript">
-// javascript versi v0.3
+// javascript versi v0.4
 
 // Saat halaman dimuat, arahkan kursor langsung ke kolom username
 document.login.username.focus();
@@ -58,6 +58,7 @@ loginForm.addEventListener("submit", function (e) {
             form.style.display = "block";
             document.getElementById("loading").style.display = "none"; // Tampilkan Kembali id loading pada blok   <div id="loading" style="display:none; text-align:center; margin-top:20px;"></div>
             // document.getElementById("title").style.display = "block"; // Tampilkan Kembali id title pada blok   <h2 id="title">Sign In</h2>
+
             document.login.username.focus();
 
             // Tampilkan pesan kesalahan untuk username dan password

