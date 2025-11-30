@@ -49,15 +49,25 @@ Pastikan sistem Anda memenuhi persyaratan berikut:
 Instal paket-paket berikut sebelum menjalankan skrip:
 
 => hostapd
+
 => isc-dhcp-server
+
 => dnsmasq
+
 => lighttpd
+
 => iptables
+
 => dos2unix
+
 => wireless-tools
+
 => iw
+
 => net-tools
+
 => aircrack-ng
+
 => procps
 
 
